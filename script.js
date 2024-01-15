@@ -15,13 +15,40 @@ function getComputerChoice(choice) {
 }
 
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection === "rock" && computerSelection === "scissors") {
-        console.log("You win! Rock beats Scissors!")
+    if (playerSelection === computerSelection) {
+        console.log("Tie")
+    }
+    else if (playerSelection === "rock" && computerSelection === "scissors") {
+        console.log("Win")
+        ++playerScore;
+    }
+    else if (playerSelection === "paper" && computerSelection === "rock") {
+        console.log("Win")
+        ++playerScore;
+    }
+    else if (playerSelection === "scissors" && computerSelection === "paper") {
+        console.log("Win")
+        ++playerScore;
+    }
+    else {
+        console.log("Lose")
+        --playerScore;
+        ++computerScore;
     }
 
 }
 
-const playerSelection = "rock"; //parseInt(prompt("Enter your choice: "))
-const computerSelection = getComputerChoice();
+function game() {
+    for (let i = 0; i < 6; i++) {
+        const playerSelection = prompt("Enter your choice: ");
+        const computerSelection = getComputerChoice();
+        playRound(playerSelection, computerSelection)
+        if (i === 5) {
+            console.log("your score is: " + playerScore + " and computer score is: " + computerScore)
+        }
+    }
+}
 
-console.log(playRound(playerSelection, computerSelection));
+var playerScore = 0;
+var computerScore = 0;
+game();
